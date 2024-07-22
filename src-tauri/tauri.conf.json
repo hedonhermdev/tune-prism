@@ -50,9 +50,10 @@
       ],
       "macOS": {
         "frameworks": [
-            "./libs/libc++.1.0.dylib",
-            "./libs/libiconv.dylib",
-            "./libs/libc++abi.1.dylib"
+            "../libtorch/lib/libtorch_cpu.dylib",
+            "../libtorch/lib/libtorch.dylib",
+            "../libtorch/lib/libc10.dylib",
+            "/opt/homebrew/Cellar/libomp/18.1.2/lib/libomp.dylib"
         ]
       },
       "resources": [

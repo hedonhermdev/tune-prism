@@ -1,7 +1,7 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-use std::{error::Error, io::stdout, sync::Arc};
+use std::{error::Error, fs, io::stdout, sync::Arc};
 use tauri::Manager;
 use tokio::sync::Mutex;
 use tracing::Level;
@@ -22,7 +22,10 @@ use stem_split::{
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
-    setup_global_subscriber();
+    // setup_global_subscriber();
+
+    fs::create_dir_all(get_base_directory().join("project_data"))
+        .expect("Unable to ensure base_directory exists");
 
     tauri::Builder::default()
         .plugin(tauri_plugin_drag::init())
