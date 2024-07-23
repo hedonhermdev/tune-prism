@@ -6,9 +6,6 @@ import {
     Route,
     Routes,
 } from "react-router-dom"
-import useUserStore from "./store/user"
-import { useEffect } from "react"
-import { getUser } from "./functions/auth"
 
 const MainScreen = () => {
     return (
@@ -20,21 +17,6 @@ const MainScreen = () => {
 }
 
 function App() {
-    const login = useUserStore(state => state.login)
-    const logout = useUserStore(state => state.logout)
-
-    useEffect(() => {
-        getUser()
-            .then(user => {
-                console.log('User is logged in!', user)
-                login(user)
-            })
-            .catch(() => {
-                console.log('User is not logged in. Clearing user store.')
-                logout()
-            })
-    }, [])
-
     return (
         <Flex width="100vw" height="100vh" bg="#1C1C1E">
             <Flex
